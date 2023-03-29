@@ -6,10 +6,14 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 const Cart = (props) => {
     let totalprice = 0
     let totalshipping = 0
+    let quantity = 0
     const { cart } = props
+    console.log(cart);
     for (const product of cart) {
-        totalprice = totalprice + product.price
+        product.quantity = product.quantity || 1
+        totalprice = totalprice + product.price * product.quantity
         totalshipping = totalshipping + product.shipping
+        quantity = quantity + product.quantity
     }
 
     const tax = totalprice*7/100
@@ -18,7 +22,7 @@ const Cart = (props) => {
         <div className=''>
             <h1 className='text-center font-semibold text-2xl '>Order Summary</h1>
             <div className='my-8'>
-                <p className='my-2 text-lg'>Selected item: {cart.length}</p>
+                <p className='my-2 text-lg'>Selected item: {quantity}</p>
                 <p className='my-2 text-lg'>price: ${totalprice}</p>
                 <p className='my-2 text-lg'>total shipping charge: ${totalshipping}</p>
                 <p className='my-2 text-lg'>Tax: ${tax.toFixed(2)}</p>

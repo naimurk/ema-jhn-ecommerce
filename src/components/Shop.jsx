@@ -1,5 +1,6 @@
 import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
+import { addToDb, getShoppingCart, removeFromDb } from '../utilities/fakedb';
 import Cart from './Cart';
 import Product from './Product';
 
@@ -16,8 +17,66 @@ const Shop = () => {
         // console.log(product);
         const newCart = [...cart,product]
         setCart(newCart)
+        addToDb(product.id)
     }
-    console.log(cart);
+
+    const removeItem = (product)=> {
+         console.log(product);
+         removeFromDb(product.id)
+        //  useEffect(()=> {
+        //     const storecart = getShoppingCart()
+        //     const saveCart = []
+        //     // console.log(storecart);
+        //     for (const id in storecart) {
+        //         const addedproduct = products.find(product => product.id == id )
+        //         // console.log(addedproduct);
+        //         if (addedproduct){
+        //             // console.log(addedproduct);
+        //             const quantity = storecart[id]
+        //             addedproduct.quantity= quantity
+        //             saveCart.push(addedproduct)
+                    
+        //         }
+        //         setCart(saveCart)
+        //     }
+    
+        // },[products])
+        // const storecart = getShoppingCart()
+        // const saveCart = []
+        // // console.log(storecart);
+        // for (const id in storecart) {
+        //     const addedproduct = products.find(product => product.id == id )
+        //     // console.log(addedproduct);
+        //     if (addedproduct){
+        //         // console.log(addedproduct);
+        //         const quantity = storecart[id]
+        //         addedproduct.quantity= quantity
+        //         saveCart.push(addedproduct)
+                
+        //     }
+        //     setCart(saveCart)
+        // }
+
+    }
+    useEffect(()=> {
+        const storecart = getShoppingCart()
+        const saveCart = []
+        // console.log(storecart);
+        for (const id in storecart) {
+            const addedproduct = products.find(product => product.id == id )
+            // console.log(addedproduct);
+            if (addedproduct){
+                // console.log(addedproduct);
+                const quantity = storecart[id]
+                addedproduct.quantity= quantity
+                saveCart.push(addedproduct)
+                
+            }
+            setCart(saveCart)
+        }
+
+    },[products])
+ 
     return (
         <div className='flex '>
             <div className="product-container grid grid-cols-3 px-32 gap-7 py-10 w-4/5">
@@ -26,6 +85,7 @@ const Shop = () => {
                      products = {product}
                      key = {product.id}
                      handleCart = {handleCart}
+                     removeItem = {removeItem}
                      ></Product>)
                }
             </div>

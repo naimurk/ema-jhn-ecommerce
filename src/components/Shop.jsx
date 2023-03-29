@@ -1,5 +1,6 @@
 import { data } from 'autoprefixer';
 import React, { useEffect, useState } from 'react';
+import Cart from './Cart';
 import Product from './Product';
 
 const Shop = () => {
@@ -28,9 +29,8 @@ const Shop = () => {
                      ></Product>)
                }
             </div>
-            <div className="cart-container h-64 bg-red-500 w-1/5">
-                <h1>Module summary </h1>
-                <p>{cart.length}</p>
+            <div className="cart-container h-2/4 sticky top-0 p-10 m-10 bg-[#FFE0B3] w-1/5">
+                <Cart cart = {cart} ></Cart>
             </div>
         </div>
     );

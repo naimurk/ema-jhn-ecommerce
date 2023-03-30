@@ -21,41 +21,12 @@ const Shop = () => {
     }
 
     const removeItem = (product)=> {
-         console.log(product);
+         console.log(product.id);
          removeFromDb(product.id)
-        //  useEffect(()=> {
-        //     const storecart = getShoppingCart()
-        //     const saveCart = []
-        //     // console.log(storecart);
-        //     for (const id in storecart) {
-        //         const addedproduct = products.find(product => product.id == id )
-        //         // console.log(addedproduct);
-        //         if (addedproduct){
-        //             // console.log(addedproduct);
-        //             const quantity = storecart[id]
-        //             addedproduct.quantity= quantity
-        //             saveCart.push(addedproduct)
-                    
-        //         }
-        //         setCart(saveCart)
-        //     }
-    
-        // },[products])
-        // const storecart = getShoppingCart()
-        // const saveCart = []
-        // // console.log(storecart);
-        // for (const id in storecart) {
-        //     const addedproduct = products.find(product => product.id == id )
-        //     // console.log(addedproduct);
-        //     if (addedproduct){
-        //         // console.log(addedproduct);
-        //         const quantity = storecart[id]
-        //         addedproduct.quantity= quantity
-        //         saveCart.push(addedproduct)
-                
-        //     }
-        //     setCart(saveCart)
-        // }
+         console.log(cart);
+         const newCart = cart.filter(cartProduct => cartProduct.id !== product.id)
+         setCart(newCart)
+        
 
     }
     useEffect(()=> {
@@ -63,7 +34,7 @@ const Shop = () => {
         const saveCart = []
         // console.log(storecart);
         for (const id in storecart) {
-            const addedproduct = products.find(product => product.id == id )
+            const addedproduct = products.find(product => product.id == id)
             // console.log(addedproduct);
             if (addedproduct){
                 // console.log(addedproduct);
@@ -72,9 +43,9 @@ const Shop = () => {
                 saveCart.push(addedproduct)
                 
             }
-            setCart(saveCart)
         }
-
+        
+        setCart(saveCart)
     },[products])
  
     return (
@@ -95,5 +66,6 @@ const Shop = () => {
         </div>
     );
 };
+
 
 export default Shop;

@@ -4,6 +4,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const Cart = (props) => {
+    console.log(props);
     let totalprice = 0
     let totalshipping = 0
     let quantity = 0

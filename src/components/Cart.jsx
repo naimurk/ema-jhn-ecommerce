@@ -4,12 +4,12 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const Cart = (props) => {
-    console.log(props);
+    // console.log(props);
     let totalprice = 0
     let totalshipping = 0
     let quantity = 0
     const { cart } = props
-    console.log(cart);
+    // console.log(cart);
     for (const product of cart) {
         product.quantity = product.quantity || 1
         totalprice = totalprice + product.price * product.quantity

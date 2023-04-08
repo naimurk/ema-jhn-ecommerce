@@ -23,7 +23,7 @@ const Shop = () => {
     const removeItem = (product)=> {
          console.log(product.id);
          removeFromDb(product.id)
-         console.log(cart);
+        //  console.log(cart);
          const newCart = cart.filter(cartProduct => cartProduct.id !== product.id)
          setCart(newCart)
         
@@ -44,7 +44,8 @@ const Shop = () => {
                 
             }
         }
-        
+        // console.log(saveCart);
+        console.log(cart);
         setCart(saveCart)
     },[products])
  
